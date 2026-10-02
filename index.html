@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NHS Staff Survey Countdown</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.poster{
+    position:relative;
+    width:100%;
+    max-width:1600px;
+    margin:auto;
+}
+
+.poster-image{
+    width:100%;
+    display:block;
+}
+
+.countdown-overlay{
+
+    position:absolute;
+
+    left:3%;
+    top:62%;
+
+    width:50%;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:auto auto;
+
+    text-align:center;
+    color:white;
+}
+
+.countdown-title{
+
+    grid-column:1 / 5;
+
+    font-size:1.8rem;
+    font-weight:700;
+
+    margin-bottom:30px;
+
+    text-align:center;
+
+    color:white;
+
+    text-shadow:0 2px 6px rgba(0,0,0,0.45);
+}
+
+.counter{
+    text-align:center;
+}
+
+.counter-number{
+    display:block;
+
+    font-size:4rem;
+    font-weight:700;
+
+    line-height:1;
+
+    color:white;
+
+    text-shadow:0 3px 8px rgba(0,0,0,0.5);
+}
+
+.counter-label{
+
+    display:block;
+
+    margin-top:10px;
+
+    font-size:1rem;
+    font-weight:600;
+
+    color:white;
+
+    text-transform:uppercase;
+
+    text-shadow:0 3px 8px rgba(0,0,0,0.5);
+}
+
+@media (max-width:1000px){
+
+    .countdown-title{
+        font-size:1.2rem;
+        margin-bottom:15px;
+    }
+
+    .counter-number{
+        font-size:2.5rem;
+    }
+
+    .counter-label{
+        font-size:0.7rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+<a href="https://digitalliverpool.sharepoint.com/sites/UHLGPeopleServices/SitePages/Staff-Engagement.aspx?web=1"
+target="_blank"
+style="display:block;">
+<div class="poster"
+onclick="window.open('https://digitalliverpool.sharepoint.com/sites/UHLGPeopleServices/SitePages/Staff-Engagement.aspx?web=1','_blank')">
+
+    <img
+class="poster-image"
+src="Staff-Survery-Mock-up-V4.png"
+alt="NHS Staff Survey Poster">
+
+    <div class="countdown-overlay">
+
+        <div class="countdown-title">
+            Time Remaining To Have Your Say
+        </div>
+
+        <div class="counter">
+            <span class="counter-number" id="days">00</span>
+            <span class="counter-label">Days</span>
+        </div>
+
+        <div class="counter">
+            <span class="counter-number" id="hours">00</span>
+            <span class="counter-label">Hours</span>
+        </div>
+
+        <div class="counter">
+            <span class="counter-number" id="minutes">00</span>
+            <span class="counter-label">Minutes</span>
+        </div>
+
+        <div class="counter">
+            <span class="counter-number" id="seconds">00</span>
+            <span class="counter-label">Seconds</span>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+const surveyEnd = new Date("2026-11-27T23:59:00Z").getTime();
+
+function updateCountdown(){
+
+    const now = new Date().getTime();
+    const difference = surveyEnd - now;
+
+    if(difference <= 0){
+
+        document.getElementById("days").textContent = "00";
+        document.getElementById("hours").textContent = "00";
+        document.getElementById("minutes").textContent = "00";
+        document.getElementById("seconds").textContent = "00";
+
+        return;
+    }
+
+    const days = Math.floor(
+        difference / (1000 * 60 * 60 * 24)
+    );
+
+    const hours = Math.floor(
+        (difference % (1000 * 60 * 60 * 24))
+        / (1000 * 60 * 60)
+    );
+
+    const minutes = Math.floor(
+        (difference % (1000 * 60 * 60))
+        / (1000 * 60)
+    );
+
+    const seconds = Math.floor(
+        (difference % (1000 * 60))
+        / 1000
+    );
+
+    document.getElementById("days").textContent =
+        days;
+
+    document.getElementById("hours").textContent =
+        String(hours).padStart(2,'0');
+
+    document.getElementById("minutes").textContent =
+        String(minutes).padStart(2,'0');
+
+    document.getElementById("seconds").textContent =
+        String(seconds).padStart(2,'0');
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+</script>
+
+</body>
+</html>

@@ -96,23 +96,6 @@ html,body{
 
     text-shadow:0 3px 8px rgba(0,0,0,0.5);
 }
-
-@media (max-width:1000px){
-
-    .countdown-title{
-        font-size:0.7rem;
-        margin-bottom:4px;
-    }
-
-    .counter-number{
-        font-size:1.4rem;
-    }
-
-    .counter-label{
-        font-size:0.35rem;
-    }
-}
-
 </style>
 </head>
 
@@ -129,12 +112,14 @@ onclick="window.open('https://digitalliverpool.sharepoint.com/sites/UHLGPeopleSe
         class="poster-image"
         src="Staff-Survery-Mock-up-V4.png"
         alt="NHS Staff Survey Poster">
-<div class="countdown-title">
-Time Remaining To Have Your Say
-</div>
+
     <div class="countdown-overlay">
 
-        <div class="countdown-"counter">
+        <div class="countdown-title">
+Time Remaining To Have Your Say
+</div>
+
+        <div class="counter">
             <span class="counter-number" id="days">00</span>
             <span class="counter-label">Days</span>
         </div>
